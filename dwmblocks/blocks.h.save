@@ -1,0 +1,12 @@
+static const Block blocks[] = {
+    /*Icon*/        /*Command*/                                       /*Update Interval*/  /*Update Signal*/
+    {"💾", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g", 30,           0 },
+    {"🔋", "acpi -b | awk '/Battery/ { print $4 }'", 60, 0 },
+    {"🌐", "ip addr show | awk '/inet / {print $2}' | head -n 1", 60, 0 },
+    {"🖥️", "top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\([0-9.]*\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}'", 10, 0 },
+    {"📅", "date '+%b %d (%a) %I:%M%p'", 5, 0 },
+};
+
+static char delim[] = " | ";
+static unsigned int delimLen = 5;
+
